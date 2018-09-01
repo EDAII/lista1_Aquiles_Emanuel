@@ -58,7 +58,7 @@ void sheelsort1(int* v ,  int gap, int i){
         }
         v[pos1]=vet[1];
         v[i]=vet[0];
-        free(vet)
+        free(vet);
         
 }
 void sheelsort(int* v ,  int gap, int i){
@@ -117,51 +117,32 @@ int main(int argc, char const *argv[])
         for(isheel=0;isheel<gap;isheel++){
            sheelsort1(v,gap,isheel);
         }
-        gap=divide(gap);
+        
         for(i=0;i<tam;i++){
 		printf("posicao do vetor: %d valor do vetor: %d \n",i,v[i]);
 	}
-        printf("o segundo gap é :%d", gap); 
-        if(tam%gap==0){ 
-          tamsheel=tam/gap;
-        }else{
-          tamsheel=tamsheel-(tam%gap);
-          tamsheel=tam/gap; 
-        }   
-        for(isheel=0;isheel<gap;isheel++){
-          sheelsortmaior1(v,gap,isheel,tamsheel);
-        }      
-        // o trecho a seguir é para debugar o que ja foi feito
-	for(i=0;i<tam;i++){
-		printf("posicao do vetor: %d valor do vetor: %d \n",i,v[i]);
-	}
-        gap=divide(gap);
-        printf("o terceiro gap é :%d", gap); 
-        if(tam%gap==0){ 
-          tamsheel=tam/gap;
-        }else{
-          tamsheel=tamsheel-(tam%gap);
-          tamsheel=tam/gap; 
-        }   
-        for(isheel=0;isheel<gap;isheel++){
-          sheelsortmaior1(v,gap,isheel,tamsheel);
-        }      
-        gap= divide(tam);
-        printf("%d",gap);
-        int ishell;   
-        sheelsort(v, gap,0);
-        int tamshell;
-        if(tam%gap==0){
-          tamshell=tam/gap;
-        }   
-        for(ishell=0;ishell<tamshell;ishell++){
-           sheelsort(v,gap,ishell);
-        }       
-
-        // o trecho a seguir é para debugar o que ja foi feito
-	for(i=0;i<tam;i++){
-		printf("posicao do vetor: %d valor do vetor: %d \n",i,v[i]);
-	}
+        printf("o segundo gap é :%d", gap);
+        int vergap;
+        vergap=0; 
+        while(vergap==0){
+           if(gap==1){
+              vergap=vergap+1;
+           }      
+           if(tam%gap==0){ 
+             tamsheel=tam/gap;
+           }else{
+             tamsheel=tamsheel-(tam%gap);
+             tamsheel=tam/gap; 
+           }   
+           for(isheel=0;isheel<gap;isheel++){
+             sheelsortmaior1(v,gap,isheel,tamsheel);
+           }      
+           // o trecho a seguir é para debugar o que ja foi feito
+	   for(i=0;i<tam;i++){
+	       printf("posicao do vetor: %d valor do vetor: %d \n",i,v[i]);
+	   }
+           gap=divide(gap);
+        }
         free (v);
 	return 0;
 }
